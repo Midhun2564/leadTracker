@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 bg-light-gray restricted-div" (click)="handleClick($event)">
+        <app-dashboard></app-dashboard>
+      </div>
+  
+      <div class="col-md-6 right-panel">
+        <div class="centered">
+            <form [formGroup]="loginForm"(ngSubmit)="onSubmit()" class="w-75">
+                <h2>Welcome</h2>
+                <p>Login with your username and password</p>
+                <input type="text" formControlName="username" class="form-control" placeholder="Username" required autofocus
+                       [ngClass]="{ 'is-invalid': loginForm.controls['username'].touched && loginForm.controls['username'].errors }">
+                <div *ngIf="loginForm.controls['username'].errors" class="invalid-feedback">
+                  <div *ngIf="loginForm.controls['username'].errors['required']">Username is required</div>
+                </div>
+                <br>
+                <input type="password" formControlName="password" class="form-control" placeholder="Password" required
+                       [ngClass]="{ 'is-invalid': loginForm.controls['password'].touched && loginForm.controls['password'].errors }">
+                <div *ngIf="loginForm.controls['password'].errors" class="invalid-feedback">
+                  <div *ngIf="loginForm.controls['password'].errors['required']">Password is required</div>
+                </div>
+                <br>
+                <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block">Login</button><br>
+                <div class="text-center">
+                    <div>Don't have an account? <a routerLink="/">Signup</a></div>
+                  </div><br>
+              </form>    
+        </div>
+      </div>
+    </div>
+  </div>
+  
